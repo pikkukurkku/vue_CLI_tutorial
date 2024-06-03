@@ -10,8 +10,19 @@
       <h1>Ninja giveaway!</h1>
       <p>Grab your ninja gear!</p>
     </Modal>
+    </div>
+    <div v-if:="showModalTwo">
+    <Modal theme="newYear" @close="toggleModalTwo">
+      <template v-slot:buttons>
+        <a href="https://portfolio-natalia-ogorek.adaptable.app/">portfolio</a>
+        <a href="https://www.linkedin.com/in/natalia-ogorek--web-development/">linked in</a>
+      </template>
+      <h1>Check me out!</h1>
+      <p>I'm a full stack developer</p>
+    </Modal>
   </div>
-  <button @click.alt="toggleModal">show modal (alt)</button>
+  <button @click="toggleModal">show modal</button>
+  <button @click="toggleModalTwo">show my deets</button>
 </template>
 
 <script>
@@ -23,14 +34,18 @@ export default {
   data() {
     return {
       title: "My first Vue App :)",
-      header: "Sign up for the giveaway!",
-      text: "Half price",
       showModal: false,
+      showModalTwo: false,
     };
   },
   methods: {
     toggleModal() {
       this.showModal = !this.showModal;
+      this.showModalTwo = false;
+    },
+    toggleModalTwo() {
+      this.showModalTwo = !this.showModalTwo;
+      this.showModal = false
     },
   },
 };

@@ -1,9 +1,13 @@
 <template>
   <div class="backdrop" @click.self="closeModal">
-    <div class="modal" :class="{ sale: theme === 'sale' }">
+    <div class="modal" :class="{ sale: theme === 'sale',  newYear: theme === 'newYear' }">
       <slot>default content</slot>
-      <div class="actions">
+      <div class="actions" v-if="theme === 'sale'">
         <slot name="links"></slot>
+      </div>
+      <div class="actions" v-if="theme === 'newYear'" >
+        <slot name="buttons"></slot>
+
       </div>
     </div>
   </div>
@@ -71,6 +75,15 @@ export default {
   color: white;
 }
 .modal.sale .actions a {
+  color: white;
+}
+
+.modal.newYear {
+  background: #03cfb4;
+  color: white;
+}
+
+.modal.newYear h1 {
   color: white;
 }
 </style>
