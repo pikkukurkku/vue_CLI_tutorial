@@ -1,7 +1,7 @@
 <template>
   <h1>{{ title }}</h1>
   <p>Welcome...</p>
-  <div v-if:="showModal">
+  <teleport to=".modals" v-if:="showModal">
     <Modal theme="sale" @close="toggleModal">
       <template v-slot:links>
         <a href="#">sign up now</a>
@@ -10,17 +10,20 @@
       <h1>Ninja giveaway!</h1>
       <p>Grab your ninja gear!</p>
     </Modal>
-    </div>
-    <div v-if:="showModalTwo">
+  </teleport>
+  <teleport to=".modals" v-if:="showModalTwo">
     <Modal theme="newYear" @close="toggleModalTwo">
       <template v-slot:buttons>
         <a href="https://portfolio-natalia-ogorek.adaptable.app/">portfolio</a>
-        <a href="https://www.linkedin.com/in/natalia-ogorek--web-development/">linked in</a>
+        <a href="https://www.linkedin.com/in/natalia-ogorek--web-development/"
+          >linked in</a
+        >
       </template>
       <h1>Check me out!</h1>
       <p>I'm a full stack developer</p>
     </Modal>
-  </div>
+  </teleport>
+
   <button @click="toggleModal">show modal</button>
   <button @click="toggleModalTwo">show my deets</button>
 </template>
@@ -45,14 +48,14 @@ export default {
     },
     toggleModalTwo() {
       this.showModalTwo = !this.showModalTwo;
-      this.showModal = false
+      this.showModal = false;
     },
   },
 };
 </script>
 
 <style>
-#app {
+#app, .modals {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
