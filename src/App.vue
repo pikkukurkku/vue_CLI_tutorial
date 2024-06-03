@@ -1,8 +1,10 @@
 <template>
   <h1>{{ title }}</h1>
-  <Modal header="Sign up for the giveaway!" text="Half price!"/>
-  <!-- <input type="text" ref="name">
-  <button @click="handleClick">click me</button> -->
+  <p>Welcome...</p>
+  <div v-if:="showModal">
+    <Modal :header="header" :text="text" theme="sale" />
+  </div>
+  <button @click="toggleModal">show modal</button>
 </template>
 
 <script>
@@ -14,14 +16,15 @@ export default {
   data() {
     return {
       title: "My first Vue App :)",
+      header: "Sign up for the giveaway!",
+      text: "Half price",
+      showModal: false,
     };
   },
   methods: {
-    // handleClick() {
-    //   console.log(this.$refs.name)
-    //   this.$refs.name.classList.add('active')
-    //   this.$refs.name.focus()
-    // }
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
   },
 };
 </script>
